@@ -15,7 +15,7 @@ setup(
     author='Alvaro Leiva',
     author_email='aleivag@gmail.com',
     url='https://github.com/Epi10/pyngdom',
-    download_url='https://github.com/Epi10/pyngdom/releases/tag/0.1.0',
+    download_url='https://github.com/Epi10/pyngdom/releases/tag/%s' % __version__,
     classifiers=[
         "Operating System :: OS Independent",
         "Intended Audience :: Developers",
