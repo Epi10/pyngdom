@@ -8,6 +8,13 @@ Simple python API Against Pingdom, that feature RUM extraction.
 .. image:: https://travis-ci.org/Epi10/pyngdom.svg?branch=master
     :target: https://travis-ci.org/Epi10/pyngdom
 
+.. image:: https://badges.gitter.im/Join%20Chat.svg
+   :alt: Join the chat at https://gitter.im/Epi10/pyngdom
+   :target: https://gitter.im/Epi10/pyngdom?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+
+.. image:: https://img.shields.io/pypi/dm/pyngdom.svg?style=flat-square&label=PyPI%20Downloads
+   :target: https://pypi.python.org/pypi/pyngdom/
+   :alt: Downloads
 
 Install
 -------
@@ -21,6 +28,12 @@ As usual
 
 Or as less ussual
 
+.. code:: usual
+
+    pip install pyngdom
+
+Or as less less usual
+
 .. code:: bash
     
     pip install git+https://github.com/Epi10/pyngdom
@@ -32,9 +45,12 @@ Getting Rum
 If you are here is for the RUM (and that's not a bad pirate's pun).
 
 We provide with 2 interfaces to pingdom rum, the first one its using a python-only aproach, and that will give you only
-*today's* RUM information, thats good if you don't want to install extra dependencies or dont like/want selenium. for the second
+*today's* RUM information, that's good if you don't want to install extra dependencies or dont like/want selenium. for the second
 approach you'll need selenium and a webbrowser, for testing, Firefox is fine, but if you really wnat to take advantage of the script
 you should really use PhantomJS (the default).
+
+Examples will be placed in the example folder, and you can use the at will. i really recomend check the git repository
+to get the latest examples.
 
 Python-Only method
 ^^^^^^^^^^^^^^^^^^
@@ -55,6 +71,7 @@ So how it is use:
         apikey='6dz4mqdms0qaxrjstntf6myt6wz5vseg',
         account='owner@epi10.cl'
     )
+    pingdom.login()
 
 
 Now you need to know the rum test ID, that's easy all you need to do is login into pingdom and then look for the RUM link
@@ -157,6 +174,9 @@ Now you are ready to use it
         password='super-secret-password'
     )
 
+    #then login
+    pingdom.login()
+
 
 
 
@@ -201,7 +221,12 @@ And now the  fun part, to get the realtime rum you just pick a sample interval (
        'url': 'http://epi10.cl'
     }
 
+you can use with statements
 
+.. code:: python
+
+    with PyngdomDriver(username='user@epi10.cl', password='super-secret-password') as pingdom:
+        realtime = pingdom.realtime_rum('XXXXXXXXXXX', 30)
 
 And its just that simple... once again we strongly suggest using phantomjs, installit is so simple in linux and mac.
 
@@ -237,3 +262,18 @@ because for some projects we really need them.
 
     #print detailed information
     print pingdom.get_detailed_check_information(api_epi10_check['id'])
+
+
+
+Changelog
+---------
+
+0.1.1 2014-06-04
+^^^^^^^^^^^^^^^^
+* Fix Documentation to include login
+* Add example folders
+
+
+0.1.0 2014-06-03
+^^^^^^^^^^^^^^^^
+* initial commit
