@@ -1,4 +1,3 @@
-
 =======
 pyngdom
 =======
@@ -16,6 +15,12 @@ Simple python API Against Pingdom, that feature RUM extraction.
    :target: https://pypi.python.org/pypi/pyngdom/
    :alt: Downloads
 
+Coments
+-------
+
+Please feel free to levae a coment (if instalation fail, or something is not working) on gitter at https://gitter.im/Epi10/pyngdom
+or send me a email at aleivag@gmail.com
+
 Install
 -------
 
@@ -28,7 +33,7 @@ As usual
 
 Or as less ussual
 
-.. code:: usual
+.. code:: bash
 
     pip install pyngdom
 
@@ -264,14 +269,21 @@ because for some projects we really need them.
     print pingdom.get_detailed_check_information(api_epi10_check['id'])
 
 
+and that how easy would you use it.
 
 Changelog
 ---------
 
+
+0.1.2 2014-06-04
+^^^^^^^^^^^^^^^^
+* Fix (stupid) pypi error at install (we read the README.rst in setup.py, but we never include when we python setup.py sdist).
+
+
 0.1.1 2014-06-04
 ^^^^^^^^^^^^^^^^
-* Fix Documentation to include login
-* Add example folders
+* Fix Documentation to include login.
+* Add example folders.
 
 
 0.1.0 2014-06-03
