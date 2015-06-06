@@ -4,9 +4,12 @@ from distutils.core import setup
 
 from pyngdom import __version__
 
-f = open(os.path.join(os.path.dirname(__file__), 'README.rst'))
-long_description = f.read()
-f.close()
+try:
+    f = open(os.path.join(os.path.dirname(__file__), 'README.rst'))
+    long_description = f.read()
+    f.close()
+except:
+    long_description = ''
 
 setup(
     name='pyngdom',
