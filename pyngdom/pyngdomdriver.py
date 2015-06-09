@@ -1,3 +1,23 @@
+# The MIT License (MIT)
+# Copyright (c) 2015 EPI10
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+# DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+# OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+# OR OTHER DEALINGS IN THE SOFTWARE.#
 
 
 import time
@@ -97,4 +117,16 @@ you pass at this driver creation.
 
     def today_rum(self, checkid):
         self.get("/rum/%s#datefilter=today&filter&timetype=median" % checkid, force_base=True)
+        return self.driver.execute_script("return Pingdom.rum.aggregatedData")
+
+    def yesterday_rum(self, checkid):
+        self.get("/rum/%s#datefilter=yesterday&filter&timetype=median" % checkid, force_base=True)
+        return self.driver.execute_script("return Pingdom.rum.aggregatedData")
+
+    def week_rum(self, checkid):
+        self.get("/rum/%s#datefilter=week&filter&timetype=median" % checkid, force_base=True)
+        return self.driver.execute_script("return Pingdom.rum.aggregatedData")
+
+    def month_rum(self, checkid):
+        self.get("/rum/%s#datefilter=month&filter&timetype=median" % checkid, force_base=True)
         return self.driver.execute_script("return Pingdom.rum.aggregatedData")

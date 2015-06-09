@@ -1,3 +1,24 @@
+# The MIT License (MIT)
+# Copyright (c) 2015 EPI10
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+# DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+# OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+# OR OTHER DEALINGS IN THE SOFTWARE.#
+
 
 import re
 import ssl
@@ -13,7 +34,8 @@ from httplib import HTTPSConnection
 
 from pyngdomdriver import PyngdomDriver
 
-__version__ = '0.1.2'
+
+__version__ = '0.2.0'
 
 if sys.version_info >= (2, 7, 9):
     ctx = ssl.create_default_context()
@@ -120,6 +142,24 @@ class PyngdomRum(object):
 
     def today_rum(self, checkid):
         response = self.opener.open("https://my.pingdom.com/rum/%s#filter&timetype=average&datefilter=today" % checkid)
+        rc = re.compile(r".*Pingdom.rum.aggregatedData *= *(?P<rum_data>.+);")
+
+        return json.loads(filter(None, map(rc.match, response)).pop(0).groupdict().get('rum_data'))
+
+    def yesterday_rum(self, checkid):
+        response = self.opener.open("https://my.pingdom.com/rum/%s#filter&timetype=average&datefilter=yesterday" % checkid)
+        rc = re.compile(r".*Pingdom.rum.aggregatedData *= *(?P<rum_data>.+);")
+
+        return json.loads(filter(None, map(rc.match, response)).pop(0).groupdict().get('rum_data'))
+
+    def week_rum(self, checkid):
+        response = self.opener.open("https://my.pingdom.com/rum/%s#filter&timetype=average&datefilter=week" % checkid)
+        rc = re.compile(r".*Pingdom.rum.aggregatedData *= *(?P<rum_data>.+);")
+
+        return json.loads(filter(None, map(rc.match, response)).pop(0).groupdict().get('rum_data'))
+
+    def month_rum(self, checkid):
+        response = self.opener.open("https://my.pingdom.com/rum/%s#filter&timetype=average&datefilter=month" % checkid)
         rc = re.compile(r".*Pingdom.rum.aggregatedData *= *(?P<rum_data>.+);")
 
         return json.loads(filter(None, map(rc.match, response)).pop(0).groupdict().get('rum_data'))

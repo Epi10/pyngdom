@@ -19,38 +19,18 @@
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 # OR OTHER DEALINGS IN THE SOFTWARE.#
 
-import os
-from distutils.core import setup
 
-from pyngdom import __version__
+def test_today_rum(pingdom_rum, rumid):
+    assert pingdom_rum.today_rum(rumid)
 
-try:
-    f = open(os.path.join(os.path.dirname(__file__), 'README.rst'))
-    long_description = f.read()
-    f.close()
-except:
-    long_description = ''
 
-setup(
-    name='pyngdom',
-    version=__version__,
-    packages=['pyngdom'],
-    author='Alvaro Leiva',
-    author_email='aleivag@gmail.com',
-    url='https://github.com/Epi10/pyngdom',
-    download_url='https://github.com/Epi10/pyngdom/releases/tag/%s' % __version__,
-    classifiers=[
-        "Operating System :: OS Independent",
-        "Intended Audience :: Developers",
-        "Intended Audience :: System Administrators",
-        "Programming Language :: Python :: 2.6",
-        "Programming Language :: Python :: 2.7",
-        "Development Status :: 3 - Alpha",
-        "Topic :: Utilities",
-        "Topic :: System :: Monitoring"
-    ],
-    keywords=['monitoring', 'rum', 'pingdom'],
-    description='A simple pingdom API interface for read RUM information',
-    long_description=long_description,
-    license='MIT'
-)
+def test_yesterday_rum(pingdom_rum, rumid):
+    assert pingdom_rum.yesterday_rum(rumid)
+
+
+def test_week_rum(pingdom_rum, rumid):
+    assert pingdom_rum.week_rum(rumid)
+
+
+def test_month_rum(pingdom_rum, rumid):
+    assert pingdom_rum.month_rum(rumid)
